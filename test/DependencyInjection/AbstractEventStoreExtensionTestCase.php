@@ -26,7 +26,6 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Compiler\ResolveChildDefinitionsPass;
-use Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\Dumper;
 use Symfony\Component\DependencyInjection\Dumper\XmlDumper;
@@ -261,11 +260,7 @@ abstract class AbstractEventStoreExtensionTestCase extends TestCase
     {
         $bundle = new ProophEventStoreBundle();
         $bundle->build($container);
-        $container->getCompilerPassConfig()->setOptimizationPasses([
-            \class_exists(ResolveChildDefinitionsPass::class)
-                ? new ResolveChildDefinitionsPass()
-                : new ResolveDefinitionTemplatesPass(),
-        ]);
+        $container->getCompilerPassConfig()->setOptimizationPasses([new ResolveChildDefinitionsPass()]);
         $container->getCompilerPassConfig()->setRemovingPasses([]);
 
         $container->compile();
