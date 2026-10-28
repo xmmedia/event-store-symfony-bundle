@@ -65,8 +65,6 @@
     "prooph/pdo-event-store": "^1.12",
     "phpunit/phpunit": "^9",
     "symfony/yaml" : "^5.4 || ^6.4 || ^7.0",
-    "bookdown/bookdown": "^1.1",
-    "prooph/bookdown-template": "^0.3",
     "friendsofphp/php-cs-fixer": "^3.5",
     "prooph/php-cs-fixer-config": "^0.5.0",
     "matthiasnoback/symfony-dependency-injection-test": "^3.1 || ^4.1 || ^5.1",
@@ -89,7 +87,6 @@
     "cs-fix": "php-cs-fixer fix -v --diff",
     "test": "phpunit --no-coverage",
     "test-coverage": "phpunit",
-    "docs": "bookdown doc/bookdown.json",
     "phpstan": "phpstan analyse -c phpstan.neon -l 6 src"
   },
   "archive": {
