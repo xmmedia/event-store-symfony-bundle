@@ -19,6 +19,14 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class XmlEventStoreExtensionTest extends AbstractEventStoreExtensionTestCase
 {
+    protected function setUp(): void
+    {
+        // Symfony 8 removed the XML configuration format
+        if (! \class_exists(XmlFileLoader::class)) {
+            self::markTestSkipped('XML configuration is not supported by this Symfony version.');
+        }
+    }
+
     protected function loadFromFile(ContainerBuilder $container, $file)
     {
         $loadXml = new XmlFileLoader($container, new FileLocator(__DIR__.'/Fixture/config/xml'));

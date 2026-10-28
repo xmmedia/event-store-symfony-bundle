@@ -23,6 +23,7 @@ use ProophTest\Bundle\EventStore\DependencyInjection\Fixture\Projection\TodoProj
 use ProophTest\Bundle\EventStore\DependencyInjection\Fixture\Projection\TodoReadModel;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class ConfigurationTest extends AbstractExtensionConfigurationTestCase
 {
@@ -71,9 +72,15 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
 
     public static function provideConfigsToTestServicesWithAt(): array
     {
-        return [
-            'xml' => [__DIR__ . '/Fixture/config/xml/event_store_with_@.xml'],
-            'yml' => [__DIR__ . '/Fixture/config/yml/event_store_with_@.yml'],
-        ];
+        $configs = [];
+
+        // Symfony 8 removed the XML configuration format
+        if (\class_exists(XmlFileLoader::class)) {
+            $configs['xml'] = [__DIR__ . '/Fixture/config/xml/event_store_with_@.xml'];
+        }
+
+        $configs['yml'] = [__DIR__ . '/Fixture/config/yml/event_store_with_@.yml'];
+
+        return $configs;
     }
 }
