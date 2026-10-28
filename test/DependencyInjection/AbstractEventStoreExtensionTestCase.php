@@ -215,7 +215,7 @@ abstract class AbstractEventStoreExtensionTestCase extends TestCase
         $this->loadContainer('missing_projection_key');
     }
 
-    private function loadContainer($fixture, CompilerPassInterface $compilerPass = null)
+    private function loadContainer($fixture, ?CompilerPassInterface $compilerPass = null)
     {
         $container = $this->getContainer();
 

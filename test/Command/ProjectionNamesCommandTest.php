@@ -62,7 +62,7 @@ class ProjectionNamesCommandTest extends KernelTestCase
      * @test
      * @dataProvider provideLimitOptions
      */
-    public function it_lists_correct_amount_of_projections(int $amountToGenerate, int $limit = null): void
+    public function it_lists_correct_amount_of_projections(int $amountToGenerate, ?int $limit = null): void
     {
         $kernel = static::createKernel();
         $kernel->boot();
